@@ -1,6 +1,9 @@
 # tssr-lab-active-directory
 
 Laboratoire Active Directory sous Windows Server 2019 : domaine, OU, utilisateurs, groupes et poste client.
+## C'est quoi Active Directory ?
+
+Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comptes utilisateurs, les groupes et les ordinateurs, et permet de gérer qui peut se connecter et accéder à quoi, depuis un seul endroit.
 
 ## Objectifs
 
