@@ -9,5 +9,10 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 - Client : Windows (VM)
 - Réseau : réseau virtuel isolé, adresses privées
 
-## Statut
-En cours de rédaction.
+## Avancement
+
+- [x] Étape 1 : préparation du laboratoire
+- [x] Étape 2 : création de la VM serveur ([détails](docs/02-creation-vm-serveur.md))
+- [ ] Étape 3 : réseau isolé et adresses IP
+
+Projet en cours, mis à jour au fil des étapes.
