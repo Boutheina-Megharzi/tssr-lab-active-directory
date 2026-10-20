@@ -11,7 +11,7 @@ Créer la machine virtuelle `SRV-DC01`, qui deviendra le contrôleur de domaine 
 | Nom de la VM | SRV-DC01 | Convention : serveur, contrôleur de domaine, numéro 01 |
 | Système | Windows Server 2019 Standard Evaluation (fr-FR) | Version d'évaluation gratuite |
 | RAM | 4096 Mo | Suffisant pour AD DS en laboratoire |
-| Processeurs | 2 | Évite les lenteurs pendant l'installation |
+| Processeurs | 1 | Évite les lenteurs pendant l'installation |
 | Disque | 50 Go (allocation dynamique) | Ne prend que l'espace réellement utilisé |
 | Réseau | NAT (provisoire) | Sera remplacé par un réseau isolé à l'étape 3 |
 
