@@ -19,6 +19,7 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 | Serveur | Windows Server 2019 Standard Evaluation (VM `SRV-DC01`) |
 | Client | Windows 10 Pro (VM, à créer) |
 | Réseau | Réseau interne `LAB-AD`, isolé, adresses IP privées |
+| Domaine | `tssrlab.local` (NetBIOS `TSSRLAB`) |
 
 ## Plan d'adressage
 | Machine | Adresse IP | Masque | Passerelle | DNS | État |
@@ -32,7 +33,7 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 - [x] Étape 3 : réseau isolé et adresses IP ([détails](docs/03-reseau-isole.md))
 - [x] Étape 4 : renommage du serveur ([détails](docs/04-renommage-serveur.md))
 - [x] Étape 5 : installation du rôle AD DS ([détails](docs/05-installation-adds.md))
-- [ ] Étape 6 : création du domaine
+- [x] Étape 6 : promotion en contrôleur de domaine, domaine `tssrlab.local` ([détails](docs/06-promotion-controleur-domaine.md))
 - [ ] Étape 7 : OU, utilisateurs et groupes
 - [ ] Étape 8 : création du poste client Windows 10 Pro
 - [ ] Étape 9 : jonction du client au domaine et tests
@@ -53,6 +54,8 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 - Renommer un serveur et vérifier le résultat
 - Diagnostiquer un gel d'installation en changeant un paramètre à la fois
 - Installer un rôle Windows Server (AD DS) avec l'assistant du Gestionnaire de serveur
+- - Promouvoir un serveur en contrôleur de domaine et créer un domaine Active Directory
+- Vérifier la résolution DNS avec `nslookup`
 - Documenter un projet technique sur GitHub
   
 
