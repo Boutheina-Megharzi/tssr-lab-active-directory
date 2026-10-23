@@ -58,6 +58,7 @@ Aucun des deux ne bloque l'installation. Preuve : [06-verification-prerequis.png
 | `nslookup tssrlab.local` | Réponse `192.168.10.10` | [06-nslookup.png](../screenshots/06-nslookup.png) |
 | Zones DNS | `tssrlab.local` et `_msdcs.tssrlab.local`, intégrées à Active Directory | [06-zones-dns.png](../screenshots/06-zones-dns.png) |
 | Console Active Directory | Domaine `tssrlab.local` affiché, sans la croix rouge de l'étape 5 | [06-console-ad.png](../screenshots/06-console-ad.png) |
+| Instantané | `06-controleur-domaine-ok` | [06-snapshot.png](../screenshots/06-snapshot.png) |
 
 ## Observations
 - Après la promotion, `ipconfig /all` affiche les serveurs DNS `::1` et `127.0.0.1` au lieu de `192.168.10.10`. Le serveur s'interroge lui-même. Les clients utiliseront `192.168.10.10`.
