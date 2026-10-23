@@ -22,7 +22,7 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 
 ## Avancement
 
-- [x] Étape 1 : préparation du laboratoire
+- [x] Étape 1 : préparation du laboratoire ([détails](docs/01-preparation.md))
 - [x] Étape 2 : création de la VM serveur ([détails](docs/02-creation-vm-serveur.md))
 - [ ] Étape 3 : réseau isolé et adresses IP
 
