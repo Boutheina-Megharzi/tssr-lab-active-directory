@@ -42,7 +42,7 @@ Statut : empreinte calculée et enregistrée.
 
 
 ## Difficultés rencontrées
-- Erreur PowerShell « chemin introuvable » : il manquait le `\` après `C:`. Le chemin correct est `C:\tssr-lab-active-directory\iso`.
+- - Erreur PowerShell « chemin introuvable » : il manquait le `\` après `C:` dans `Set-Location`. PowerShell a donc cherché dans `C:\Windows\system32\`, le dossier où il était ouvert. Le chemin correct est `C:\tssr-lab-active-directory\iso`. Preuve : [01-erreur-chemin-powershell.png](../screenshots/01-erreur-chemin-powershell.png)
 
 ## Bilan
 Mon PC dispose des ressources nécessaires pour le laboratoire.
