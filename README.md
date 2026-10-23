@@ -31,7 +31,7 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 - [x] Étape 2 : création de la VM serveur ([détails](docs/02-creation-vm-serveur.md))
 - [x] Étape 3 : réseau isolé et adresses IP ([détails](docs/03-reseau-isole.md))
 - [x] Étape 4 : renommage du serveur ([détails](docs/04-renommage-serveur.md))
-- [ ] Étape 5 : installation du rôle AD DS
+- [ ] Étape 5 : installation du rôle AD DS ([détails](docs/05-installation-adds.md))
 - [ ] Étape 6 : création du domaine
 - [ ] Étape 7 : OU, utilisateurs et groupes
 - [ ] Étape 8 : création du poste client Windows 10 Pro
@@ -52,7 +52,9 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 - Tester une connectivité avec `ping` et lire `ipconfig /all`
 - Renommer un serveur et vérifier le résultat
 - Diagnostiquer un gel d'installation en changeant un paramètre à la fois
+- Installer un rôle Windows Server (AD DS) avec l'assistant du Gestionnaire de serveur
 - Documenter un projet technique sur GitHub
+  
 
 Mis à jour après chaque étape.
 
