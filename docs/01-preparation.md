@@ -27,7 +27,7 @@ Commande utilisée :
 
 Empreinte obtenue : `6A2B373321408F8509151B00DAF07BEA4FE7FD7D7C3435415B2D0CC0117A11FF`
 
-Preuve : `03-hash-iso.png`
+Preuve : [03-hash-iso.png](../screenshots/03-hash-iso.png)
 
 Statut : empreinte calculée et enregistrée.
 
