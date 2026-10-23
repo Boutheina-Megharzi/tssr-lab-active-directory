@@ -31,3 +31,5 @@ Configuration de la VM créée :
 
 - La case « Proceed with Unattended Installation » a un libellé différent selon les versions de VirtualBox. Dans la version 7.2.20, elle est laissée décochée pour installer Windows manuellement.
 - Les sections « Specify virtual hardware » et « Specify virtual hard disk » sont repliées par défaut. Le disque a donc gardé la taille proposée (50 Go) au lieu des 60 Go initialement prévus, ce qui reste suffisant pour le laboratoire.
+- Installation gelée avec 2 processeurs, résolue avec 1.
+- VirtualBox tourne en mode native API (tortue verte), ce qui explique probablement l’instabilité.
