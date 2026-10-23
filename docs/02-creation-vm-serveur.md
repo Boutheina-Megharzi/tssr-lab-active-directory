@@ -13,7 +13,7 @@ Créer la machine virtuelle `SRV-DC01`, qui deviendra le contrôleur de domaine 
 | RAM | 4096 Mo | Suffisant pour AD DS en laboratoire |
 | Processeurs | 1 | (avec 2 processeurs, l’installation gelait ; avec 1, elle a abouti) |
 | Disque | 50 Go (allocation dynamique) | Ne prend que l'espace réellement utilisé |
-| Réseau | NAT (provisoire) | Réseau interne LAB-AD (changé à l’étape 3) |
+| Réseau | NAT à la création, puis réseau interne LAB-AD à l’étape 3) | Le NAT était provisoire ; le réseau interne isole le laboratoire |
 
 Le nom de la VM dans VirtualBox est distinct du futur nom d'ordinateur Windows, qui sera configuré plus tard.
 
@@ -32,4 +32,4 @@ Configuration de la VM créée :
 - La case « Proceed with Unattended Installation » a un libellé différent selon les versions de VirtualBox. Dans la version 7.2.20, elle est laissée décochée pour installer Windows manuellement.
 - Les sections « Specify virtual hardware » et « Specify virtual hard disk » sont repliées par défaut. Le disque a donc gardé la taille proposée (50 Go) au lieu des 60 Go initialement prévus, ce qui reste suffisant pour le laboratoire.
 - Installation gelée avec 2 processeurs, résolue avec 1.
-- VirtualBox tourne en mode native API (tortue verte), ce qui explique probablement l’instabilité.
+- VirtualBox tourne en mode native API (tortue verte), hypothèse à confirmer.
