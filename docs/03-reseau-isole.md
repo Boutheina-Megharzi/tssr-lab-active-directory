@@ -41,7 +41,7 @@ L'adresse MAC `08-00-27-9F-CB-13` est identique dans VirtualBox et dans Windows 
 - Le message « Réseau non identifié » est normal : il n'y a ni passerelle ni domaine pour l'instant.
 
 ## Difficultés rencontrées
-- Le snapshot n'avait pas été pris avant le changement de réseau. Il a été pris ensuite, avec un nom qui décrit l'état réel (`03-reseau-ip-fixe-ok`) au lieu de « avant réseau ».
+-  Le snapshot n'avait pas été pris avant le changement de réseau. Il a été pris ensuite, avec un nom qui décrit l'état réel (`03-reseau-ip-fixe-ok`) au lieu de « avant réseau ». Preuves : [03-snapshot-avant.png](../screenshots/03-snapshot-avant.png) (liste vide) et [03-snapshot.png](../screenshots/03-snapshot.png) (instantané créé).
 
 ## Prochaine étape
 Renommer le serveur, puis installer le rôle AD DS.
