@@ -3,14 +3,9 @@
 ## Objectif
 Vérifier que mon PC peut héberger le laboratoire, puis contrôler l'ISO de Windows Server avant de l'utiliser.
 
-## Machine hôte
-| Élément | Valeur | Preuve |
-|---|---|---|
-| Système | Windows 11 Famille, version 25H2 | [01-hote-windows.png](../screenshots/01-windows-hote.png) |
-| Processeur | Intel Core Ultra 5 322, 6 cœurs, 6 processeurs logiques | [01-hote-processeur.png](../screenshots/01-processeur-pc.png) |
-| Virtualisation | Activée | [01-hote-processeur.png](../screenshots/01-hote-processeur.png) |
-| Mémoire vive | 16 Go DDR5 | [01-hote-memoire.png](../screenshots/01-hote-memoire.png) |
-| Disque | SSD NVMe, 327 Go libres sur 474 Go | [02-espace-disque.png](../screenshots/02-espace-disque.png) |
+| Système | Windows 11 Famille, version 25H2 | [01-windows-hote.png](../screenshots/01-windows-hote.png) |
+| Processeur | Intel Core Ultra 5 322, 6 cœurs, 6 processeurs logiques | [01-processeur-pc.png](../screenshots/01-processeur-pc.png) |
+| Virtualisation | Activée | [01-processeur-pc.png](../screenshots/01-processeur-pc.png) |
 
 ## Outils
 | Outil | Détail | Preuve |
