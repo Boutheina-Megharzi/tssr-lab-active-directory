@@ -36,6 +36,7 @@ Impact : le serveur redémarre. Aucune donnée n'est en jeu, car il est encore v
 | Serveur DNS | `192.168.10.10` | [04-ipconfig-all.png](../screenshots/04-ipconfig-all.png) |
 | Adresse MAC | `08-00-27-9F-CB-13`, identique à celle de l'étape 3 | [04-ipconfig-all.png](../screenshots/04-ipconfig-all.png) |
 | Suffixe DNS principal | Vide (normal : pas encore de domaine) | [04-ipconfig-all.png](../screenshots/04-ipconfig-all.png) |
+| Instantané | `04-serveur-renomme` | [04-snapshot.png](../screenshots/04-snapshot.png) |
 
 Le renommage n'a modifié ni l'adresse IP, ni le DNS, ni la carte réseau.
 
