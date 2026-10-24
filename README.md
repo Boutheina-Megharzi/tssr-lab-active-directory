@@ -51,7 +51,7 @@ Les utilisateurs et les groupes de sécurité de l'entreprise fictive seront cr�
 - [x] Étape 6 : promotion en contrôleur de domaine, domaine `tssrlab.local` ([détails](docs/06-promotion-controleur-domaine.md))
 - [x] Étape 7 : structure d'unités d'organisation ([détails](docs/07-structure-ou.md))
 - [x] Étape 8 : utilisateurs et groupes de sécurité ([détails](docs/08-utilisateurs-groupes.md))
-- [ ] Étape 9 : affectation des utilisateurs aux groupes
+- [x] Étape 9 : affectation des utilisateurs aux groupes ([détails](docs/09-affectation-groupes.md))
 - [ ] Étape 10 : création du poste client Windows 10 Pro
 - [ ] Étape 11 : jonction du client au domaine et tests
 
@@ -64,6 +64,7 @@ Les utilisateurs et les groupes de sécurité de l'entreprise fictive seront cr�
 | `06-controleur-domaine-ok` | Contrôleur de domaine `tssrlab.local` opérationnel |
 | `07-ou-creees` | Structure d'OU créée |
 | `08-utilisateurs-groupes-crees` | 8 utilisateurs et 4 groupes de sécurité créés |
+| `09-groupes-affectes` | Chaque utilisateur est membre du groupe de son service |
 
 ## Difficultés rencontrées
 - Erreur PowerShell « chemin introuvable » : il manquait le `\` après `C:`. Résolue en écrivant le chemin complet.
@@ -90,6 +91,7 @@ Les utilisateurs et les groupes de sécurité de l'entreprise fictive seront cr�
 - Créer une structure d'unités d'organisation et protéger les objets contre la suppression accidentelle
 - Diagnostiquer un gel d'installation en changeant un paramètre à la fois
 - Créer des comptes utilisateurs et des groupes de sécurité dans Active Directory
+-  Affecter des utilisateurs à des groupes de sécurité et vérifier l'appartenance
 - Documenter un projet technique sur GitHub
 
 Mis à jour après chaque étape.
