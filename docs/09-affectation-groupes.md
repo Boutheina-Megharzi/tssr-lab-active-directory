@@ -8,7 +8,7 @@ Ajouter chaque utilisateur au groupe de sécurité de son service, puis vérifie
 - **Utilisateurs du domaine** : groupe principal dans lequel tout compte du domaine se trouve déjà.
 - **Délai d'effet** : le serveur lit les groupes d'un utilisateur à l'ouverture de session. Un utilisateur déjà connecté doit se déconnecter, puis se reconnecter.
 
-**Pourquoi je donne les permissions à un groupe :** je donne une permission une seule fois, au groupe. Quand une personne arrive ou part, j'ajoute ou je retire un seul compte du groupe. Je gagne du temps et je réduis les erreurs.
+**Pourquoi je donne les permissions à un groupe :** Je donne chaque permission une seule fois, au groupe. J'ajoute un compte au groupe quand une personne arrive. Je retire ce compte quand elle part. Je gagne du temps, je limite les erreurs et je garde une vue claire des droits.
 
 ## Affectation réalisée
 | Groupe | Membres | OU d'origine des membres |
