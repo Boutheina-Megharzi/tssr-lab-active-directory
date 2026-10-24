@@ -10,7 +10,7 @@ Créer les comptes de l'entreprise fictive dans l'OU de leur service, puis les g
 - **Authentification** : vérifier qui est la personne (identifiant et mot de passe).
 - **Autorisation** : décider ce que la personne a le droit de faire, grâce aux groupes et aux permissions.
 
-**Pourquoi les groupes sont dans l'OU `Groupes` :** un groupe n'appartient pas à un seul service, car il peut réunir des utilisateurs de plusieurs OU. Ranger les groupes dans une OU dédiée et les utilisateurs dans les OU de service facilite l'administration et la délégation.
+**Pourquoi les groupes sont dans l'OU `Groupes` :** Je range les groupes dans une OU dédiée. Un groupe réunit des personnes de plusieurs services, donc je ne le place pas dans l'OU d'un seul service. Je retrouve vite chaque objet : les utilisateurs dans leur service, les groupes dans `Groupes`. Je peux aussi confier la gestion des groupes à une personne sans lui donner accès aux comptes.
 
 ## Utilisateurs créés
 | OU | Nom complet | Identifiant |
