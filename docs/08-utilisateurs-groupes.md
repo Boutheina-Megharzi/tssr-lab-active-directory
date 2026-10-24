@@ -56,7 +56,7 @@ Les noms de groupes sont écrits sans accent, même si l'OU s'appelle `Comptabil
 | OU Marketing | Hugo Lambert (nom tronqué à l'écran) et Emma Girard | [08-ou-marketing.png](../screenshots/08-ou-marketing.png) |
 | Menu de création d'un groupe | Clic droit sur l'OU `Groupes` | [08-menu-nouveau-groupe.png](../screenshots/08-menu-nouveau-groupe.png) |
 | Création d'un groupe | `GG_Direction`, étendue Globale, type Sécurité, dans `tssrlab.local/Entreprise/Groupes` | [08-creation-groupe.png](../screenshots/08-creation-groupe.png) |
-| OU Groupes | Quatre groupes de sécurité | [08-ou-groupes.png](../screenshots/08-ou-groupes.png) |
+| OU Groupes | Quatre groupes de sécurité globaux : `GG_Comptabilite`, `GG_Direction`, `GG_Informatique`, `GG_Marketing` | [08-ou-groupes.png](../screenshots/08-ou-groupes.png) |
 | Onglet Compte d'Emma Girard | Identifiant `emma.girard@tssrlab.local`, ancien nom `TSSRLAB\emma.girard`, mot de passe sans expiration, changement obligatoire décoché, expiration du compte : jamais | [08-onglet-compte.png](../screenshots/08-onglet-compte.png) |
 | Instantané | `08-utilisateurs-groupes-crees` | [08-snapshot.png](../screenshots/08-snapshot.png) |
 
