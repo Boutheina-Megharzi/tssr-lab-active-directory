@@ -17,7 +17,7 @@ Créer les comptes de l'entreprise fictive dans l'OU de leur service, puis les g
 |---|---|---|
 | Direction | Claire Martin | `claire.martin` |
 | Direction | Paul Durand | `paul.durand` |
-| Comptabilité | Sonia Bernard | `[sonia.bernard]` |
+| Comptabilité | Sonia Bernard | `sonia.bernard` |
 | Comptabilité | Lucas Petit | `lucas.petit` |
 | Informatique | Amine Roux | `amine.roux` |
 | Informatique | Julie Moreau | `julie.moreau` |
