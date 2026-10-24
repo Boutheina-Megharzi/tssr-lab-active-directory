@@ -58,10 +58,11 @@ Les noms de groupes sont écrits sans accent, même si l'OU s'appelle `Comptabil
 | Création d'un groupe | `GG_Direction`, étendue Globale, type Sécurité, dans `tssrlab.local/Entreprise/Groupes` | [08-creation-groupe.png](../screenshots/08-creation-groupe.png) |
 | OU Groupes | Quatre groupes de sécurité | [08-ou-groupes.png](../screenshots/08-ou-groupes.png) |
 | Onglet Compte d'Emma Girard | Identifiant `emma.girard@tssrlab.local`, ancien nom `TSSRLAB\emma.girard`, mot de passe sans expiration, changement obligatoire décoché, expiration du compte : jamais | [08-onglet-compte.png](../screenshots/08-onglet-compte.png) |
+| Instantané | `08-utilisateurs-groupes-crees` | [08-snapshot.png](../screenshots/08-snapshot.png) |
 
 ## Points d'attention
 - Les deux options de mot de passe choisies simplifient les tests du laboratoire. En entreprise, on impose le changement du mot de passe à la première connexion.
-- Les comptes de test partagent un mot de passe de laboratoire unique, conservé hors du dépôt. En production, chaque utilisateur a son propre mot de passe.
+- Les comptes de test partagent un mot de passe de laboratoire, différent de celui du compte Administrateur. Il est conservé hors du dépôt. En production, chaque utilisateur a son propre mot de passe.
 - L'OU est nommée `Comptabilité` avec un accent, alors que les groupes et les identifiants n'en ont pas, car les accents posent parfois problème dans les scripts.
 
 ## Difficultés rencontrées
