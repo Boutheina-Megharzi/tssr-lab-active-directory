@@ -1,7 +1,7 @@
 # Étape 9 : affectation aux groupes et dossier partagé
 
 ## Objectif
-Ajouter chaque utilisateur au groupe de son service, puis préparer un dossier partagé pour tester les permissions d'un groupe.
+Ajouter chaque utilisateur au groupe de son service, puis tester les permissions d'un groupe sur un dossier partagé.
 
 ## Notions utilisées
 - **Membre d'un groupe** : l'utilisateur reçoit les permissions données au groupe.
@@ -24,29 +24,33 @@ Ajouter chaque utilisateur au groupe de son service, puis préparer un dossier p
 2. Saisie des identifiants séparés par un point-virgule, puis Vérifier les noms.
 3. Même opération pour les quatre groupes.
 4. Création du dossier `C:\Partages\Direction` et partage sous `\\SRV-DC01\Direction`.
+5. Désactivation de l'héritage NTFS, retrait des entrées « Utilisateurs » et ajout de `GG_Direction` avec la permission Modification.
+6. Relevé des droits effectifs de deux comptes.
 
 ## Tests et résultats
 | Test | Résultat | Preuve |
 |---|---|---|
+| Saisie et vérification des noms | `claire.martin` et `paul.durand` reconnus | [09-saisie-membres.png](../screenshots/09-saisie-membres.png) |
 | Membres de `GG_Direction` | Claire Martin, Paul Durand | [09-membres-gg-direction.png](../screenshots/09-membres-gg-direction.png) |
 | Membres de `GG_Comptabilite` | Lucas Petit, Sonia Bernard | [09-membres-gg-comptabilite.png](../screenshots/09-membres-gg-comptabilite.png) |
 | Membres de `GG_Informatique` | Amine Roux, Julie Moreau | [09-membres-gg-informatique.png](../screenshots/09-membres-gg-informatique.png) |
+| Membres de `GG_Marketing` | Emma Girard, Hugo Lambert | [09-membres-gg-marketing.png](../screenshots/09-membres-gg-marketing.png) |
 | Partage du dossier `Direction` | État « Partagé », chemin réseau `\\SRV-DC01\Direction` | [09-partage-direction.png](../screenshots/09-partage-direction.png) |
 | Permissions NTFS d'origine | Héritage de `C:\` actif. Système, Administrateurs et Créateur propriétaire : Contrôle total. Utilisateurs : Lecture et exécution, plus une entrée Spéciale | [09-ntfs-liste-avant.png](../screenshots/09-ntfs-liste-avant.png) |
 | Liste NTFS finale | Héritage désactivé. Système et Administrateurs : Contrôle total. Créateur propriétaire : Contrôle total sur les sous-dossiers et les fichiers. `GG_Direction` : Modification. Entrées « Utilisateurs » retirées | [09-ntfs-liste-finale.png](../screenshots/09-ntfs-liste-finale.png) |
 | Droits effectifs de `claire.martin` | Droits de lecture, de création et de suppression accordés. Contrôle total, suppression de sous-dossier et fichier, et modification des autorisations refusés (limités par les autorisations de fichiers) | [09-acces-effectif-claire.png](../screenshots/09-acces-effectif-claire.png) |
 | Droits effectifs de `lucas.petit` | Aucun droit accordé sur les 13 lignes visibles, toutes limitées par les autorisations de fichiers | [09-acces-effectif-lucas.png](../screenshots/09-acces-effectif-lucas.png) |
 
-## Reste à faire
-Retirer l'héritage, restreindre le dossier à `GG_Direction` (Modification), puis relever les droits effectifs de `claire.martin` et de `lucas.petit`. Le test d'accès réel se fera depuis le client Windows 10.
+## Conclusion du test
+Le calcul des droits effectifs donne des résultats différents pour deux comptes du même domaine : `claire.martin`, membre de `GG_Direction`, obtient des droits de modification sur le dossier, alors que `lucas.petit`, membre de `GG_Comptabilite`, n'obtient aucun droit. Le calcul se base sur les groupes et ne tient pas compte des permissions de partage. Le test d'accès réel est prévu depuis le client Windows 10 joint au domaine.
 
 ## Difficultés rencontrées
-- Le dossier parent `C:\Partages` a été partagé par erreur sous le nom `Direction`. Le chemin réseau affiché a révélé l'erreur. Preuve : [09-partage-erreur-partages.png](../screenshots/09-partage-erreur-partages.png)
-- Une première fenêtre ouverte par erreur montrait les droits de l'OU `Direction` dans Active Directory. Les onglets et les groupes affichés (Admins du domaine, SELF) l'ont révélé. L'état de l'OU a été revérifié : héritage actif, bouton Appliquer grisé.
+- Le dossier parent `C:\Partages` a été partagé par erreur sous le nom `Direction`. Le chemin réseau affiché a révélé l'erreur. Le partage du dossier parent a ensuite été supprimé, puis le bon dossier a été partagé. Preuves : [09-partage-erreur-partages.png](../screenshots/09-partage-erreur-partages.png) et [09-partage-corrige.png](../screenshots/09-partage-corrige.png)
+- Une première fenêtre ouverte par erreur montrait les droits de l'OU `Direction` dans Active Directory, et non ceux du dossier. Les onglets et les groupes affichés (Admins du domaine, SELF) l'ont révélé. L'état de l'OU a été revérifié : héritage actif, bouton Appliquer grisé.
 
 ## Points d'attention
 - Chaque groupe contient exactement deux membres, issus de l'OU du même service.
 - Les mots de passe des comptes de test ne figurent pas dans ce dépôt.
 
 ## Prochaine étape
-Terminer le test des permissions, puis créer le poste client Windows 10 Pro.
+Créer le poste client Windows 10 Pro, puis tester l'accès réel au dossier partagé.
