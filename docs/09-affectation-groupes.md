@@ -29,7 +29,8 @@ Ajouter chaque utilisateur au groupe de son service, puis préparer un dossier p
 | Test | Résultat | Preuve |
 |---|---|---|
 | Membres de `GG_Direction` | Claire Martin, Paul Durand | [09-membres-gg-direction.png](../screenshots/09-membres-gg-direction.png) |
-| `GG_Comptabilite` et `GG_Informatique` | Deux membres chacun, vérifiés de la même façon, captures non publiées | |
+| Membres de `GG_Comptabilite` | Lucas Petit, Sonia Bernard | [09-membres-gg-comptabilite.png](../screenshots/09-membres-gg-comptabilite.png) |
+| Membres de `GG_Informatique` | Amine Roux, Julie Moreau | [09-membres-gg-informatique.png](../screenshots/09-membres-gg-informatique.png) |
 | Partage du dossier `Direction` | État « Partagé », chemin réseau `\\SRV-DC01\Direction` | [09-partage-direction.png](../screenshots/09-partage-direction.png) |
 | Permissions NTFS d'origine | Héritage de `C:\` actif. Système, Administrateurs et Créateur propriétaire : Contrôle total. Utilisateurs : Lecture et exécution, plus une entrée Spéciale | [09-ntfs-liste-avant.png](../screenshots/09-ntfs-liste-avant.png) |
 | Liste NTFS finale | Héritage désactivé. Système et Administrateurs : Contrôle total. Créateur propriétaire : Contrôle total sur les sous-dossiers et les fichiers. `GG_Direction` : Modification. Entrées « Utilisateurs » retirées | [09-ntfs-liste-finale.png](../screenshots/09-ntfs-liste-finale.png) |
