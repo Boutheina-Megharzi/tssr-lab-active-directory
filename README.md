@@ -40,7 +40,7 @@ Les clients utiliseront `192.168.10.10` comme DNS, car le serveur héberge la zo
         ├── Groupes
         └── Ordinateurs
 
-Les utilisateurs et les groupes de sécurité de l'entreprise fictive seront créés à l'étape 8.
+Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupes de sécurité globaux : `GG_Direction`, `GG_Comptabilite`, `GG_Informatique` et `GG_Marketing`.
 
 ## Avancement
 - [x] Étape 1 : préparation du laboratoire ([détails](docs/01-preparation.md))
@@ -51,9 +51,9 @@ Les utilisateurs et les groupes de sécurité de l'entreprise fictive seront cr�
 - [x] Étape 6 : promotion en contrôleur de domaine, domaine `tssrlab.local` ([détails](docs/06-promotion-controleur-domaine.md))
 - [x] Étape 7 : structure d'unités d'organisation ([détails](docs/07-structure-ou.md))
 - [x] Étape 8 : utilisateurs et groupes de sécurité ([détails](docs/08-utilisateurs-groupes.md))
-- [x] Étape 9 : affectation des utilisateurs aux groupes ([détails](docs/09-affectation-groupes.md))
+- [x] Étape 9 : affectation aux groupes et dossier partagé de test ([détails](docs/09-affectation-groupes.md))
 - [ ] Étape 10 : création du poste client Windows 10 Pro
-- [ ] Étape 11 : jonction du client au domaine et tests
+- [ ] Étape 11 : jonction du client au domaine et tests d'accès réels
 
 ## Points de retour (instantanés VirtualBox)
 | Instantané | État du serveur |
@@ -65,6 +65,7 @@ Les utilisateurs et les groupes de sécurité de l'entreprise fictive seront cr�
 | `07-ou-creees` | Structure d'OU créée |
 | `08-utilisateurs-groupes-crees` | 8 utilisateurs et 4 groupes de sécurité créés |
 | `09-groupes-affectes` | Chaque utilisateur est membre du groupe de son service |
+| `09-permissions-ntfs` | Groupes affectés, dossier de test restreint à `GG_Direction` |
 
 ## Difficultés rencontrées
 - Erreur PowerShell « chemin introuvable » : il manquait le `\` après `C:`. Résolue en écrivant le chemin complet.
@@ -73,10 +74,12 @@ Les utilisateurs et les groupes de sécurité de l'entreprise fictive seront cr�
 - Mot de passe Administrateur oublié : VM recréée, mot de passe désormais noté hors GitHub.
 - Instantané oublié avant le changement de réseau : pris ensuite, avec un nom qui décrit l'état réel.
 - Après la promotion, `nslookup` affiche un délai d'attente sur le serveur DNS tout en résolvant correctement `tssrlab.local`. Cause probable : pas de zone de recherche inversée. Hypothèse non confirmée.
+- Test des permissions : le dossier parent a été partagé par erreur à la place du sous-dossier, détecté grâce au chemin réseau affiché, puis corrigé. Une fenêtre de droits d'OU a aussi été ouverte à la place de celle du dossier, sans modification enregistrée.
 
 ## Choix techniques
 - Le nom de domaine `tssrlab.local` convient à un laboratoire isolé. Le suffixe `.local` est déconseillé en production, car il peut entrer en conflit avec d'autres services réseau.
 - La protection contre la suppression accidentelle reste cochée sur toutes les OU.
+- Les comptes de test partagent un mot de passe de laboratoire, conservé hors du dépôt. En production, chaque utilisateur aurait son propre mot de passe.
 
 ## Compétences travaillées
 - Vérifier les ressources d'un PC avant de créer un laboratoire
@@ -89,9 +92,9 @@ Les utilisateurs et les groupes de sécurité de l'entreprise fictive seront cr�
 - Promouvoir un serveur en contrôleur de domaine et créer un domaine Active Directory
 - Vérifier la résolution DNS avec `nslookup`
 - Créer une structure d'unités d'organisation et protéger les objets contre la suppression accidentelle
+- Créer des comptes utilisateurs et des groupes de sécurité, puis affecter les utilisateurs aux groupes
+- Partager un dossier, configurer des permissions NTFS pour un groupe et vérifier des droits effectifs
 - Diagnostiquer un gel d'installation en changeant un paramètre à la fois
-- Créer des comptes utilisateurs et des groupes de sécurité dans Active Directory
--  Affecter des utilisateurs à des groupes de sécurité et vérifier l'appartenance
 - Documenter un projet technique sur GitHub
 
 Mis à jour après chaque étape.
