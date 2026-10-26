@@ -28,12 +28,13 @@ Ajouter chaque utilisateur au groupe de son service, puis préparer un dossier p
 ## Tests et résultats
 | Test | Résultat | Preuve |
 |---|---|---|
-| Saisie et vérification des noms | `claire.martin` et `paul.durand` reconnus | [09-saisie-membres.png](../screenshots/09-saisie-membres.png) |
 | Membres de `GG_Direction` | Claire Martin, Paul Durand | [09-membres-gg-direction.png](../screenshots/09-membres-gg-direction.png) |
-| Membres de `GG_Marketing` | Emma Girard, Hugo Lambert | [09-membres-gg-marketing.png](../screenshots/09-membres-gg-marketing.png) |
 | `GG_Comptabilite` et `GG_Informatique` | Deux membres chacun, vérifiés de la même façon, captures non publiées | |
 | Partage du dossier `Direction` | État « Partagé », chemin réseau `\\SRV-DC01\Direction` | [09-partage-direction.png](../screenshots/09-partage-direction.png) |
 | Permissions NTFS d'origine | Héritage de `C:\` actif. Système, Administrateurs et Créateur propriétaire : Contrôle total. Utilisateurs : Lecture et exécution, plus une entrée Spéciale | [09-ntfs-liste-avant.png](../screenshots/09-ntfs-liste-avant.png) |
+| Liste NTFS finale | Héritage désactivé. Système et Administrateurs : Contrôle total. Créateur propriétaire : Contrôle total sur les sous-dossiers et les fichiers. `GG_Direction` : Modification. Entrées « Utilisateurs » retirées | [09-ntfs-liste-finale.png](../screenshots/09-ntfs-liste-finale.png) |
+| Droits effectifs de `claire.martin` | Droits de lecture, de création et de suppression accordés. Contrôle total, suppression de sous-dossier et fichier, et modification des autorisations refusés (limités par les autorisations de fichiers) | [09-acces-effectif-claire.png](../screenshots/09-acces-effectif-claire.png) |
+| Droits effectifs de `lucas.petit` | Aucun droit accordé sur les 13 lignes visibles, toutes limitées par les autorisations de fichiers | [09-acces-effectif-lucas.png](../screenshots/09-acces-effectif-lucas.png) |
 
 ## Reste à faire
 Retirer l'héritage, restreindre le dossier à `GG_Direction` (Modification), puis relever les droits effectifs de `claire.martin` et de `lucas.petit`. Le test d'accès réel se fera depuis le client Windows 10.
