@@ -20,12 +20,13 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 | Domaine | `tssrlab.local` (nom NetBIOS `TSSRLAB`) |
 | Client | Windows 10 Pro (VM `CLT-W10-01`, pas encore joint au domaine) |
 | Réseau | Réseau interne `LAB-AD`, isolé, adresses IP privées |
+| Client | Windows 10 Pro (VM `CLT-W10-01`, joint au domaine `tssrlab.local`) |
 
 ## Plan d'adressage
 | Machine | Adresse IP | Masque | Passerelle | DNS | État |
 |---|---|---|---|---|---|
 | SRV-DC01 | 192.168.10.10 | 255.255.255.0 | aucune | lui-même (`127.0.0.1`) | Contrôleur de domaine |
-| Client Windows 10 | 192.168.10.20 | 255.255.255.0 | aucune | 192.168.10.10 | Prévu |
+| Client Windows 10 | 192.168.10.20 | 255.255.255.0 | aucune | 192.168.10.10 | Configuré, joint au domaine |
 
 Les clients utiliseront `192.168.10.10` comme DNS, car le serveur héberge la zone `tssrlab.local`.
 
@@ -53,7 +54,7 @@ Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupe
 - [x] Étape 8 : utilisateurs et groupes de sécurité ([détails](docs/08-utilisateurs-groupes.md))
 - [x] Étape 9 : affectation aux groupes et dossier partagé de test ([détails](docs/09-affectation-groupes.md))
 - [x] Étape 10 : création du poste client Windows 10 Pro ([détails](docs/10-creation-client.md))
-- [ ] Étape 11 : jonction du client au domaine et tests d'accès réels
+- [x] Étape 11 : jonction du client au domaine et tests d'accès ([détails](docs/11-jonction-domaine.md))
 
 ## Points de retour (instantanés VirtualBox)
 | Instantané | État du serveur |
@@ -68,6 +69,8 @@ Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupe
 | `09-permissions-ntfs` | Groupes affectés, dossier de test restreint à `GG_Direction` |
 | `10-vm-creee` | VM client créée, Windows non installé |
 | `10-windows10-installe` | Windows 10 Pro installé, compte local, hors domaine |
+| `11-client-joint` (client) | Client Windows 10 Pro joint au domaine |
+| `11-client-joint-serveur` (serveur) | Domaine avec un client joint, rangé dans l'OU Ordinateurs |
 
 ## Difficultés rencontrées
 - Erreur PowerShell « chemin introuvable » : il manquait le `\` après `C:`. Résolue en écrivant le chemin complet.
@@ -78,6 +81,7 @@ Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupe
 - Après la promotion, `nslookup` affiche un délai d'attente sur le serveur DNS tout en résolvant correctement `tssrlab.local`. Cause probable : pas de zone de recherche inversée. Hypothèse non confirmée.
 - Test des permissions : le dossier parent a été partagé par erreur à la place du sous-dossier, détecté grâce au chemin réseau affiché, puis corrigé. Une fenêtre de droits d'OU a aussi été ouverte à la place de celle du dossier, sans modification enregistrée.
 - Installation de Windows 10 dans VirtualBox : une première tentative a échoué avec l'erreur « L'ordinateur a redémarré de manière inattendue » (cause non identifiée). L'installation a ensuite réussi avec 1 processeur et 4 Go de mémoire. Un redémarrage sur l'installateur causé par l'ordre d'amorçage a été corrigé.
+- Première jonction au domaine échouée (délai dépassé) : le client portait l'adresse IP du serveur, signalée « en double ». Corrigée en `192.168.10.20`, puis jonction réussie.
   
 ## Choix techniques
 - Le nom de domaine `tssrlab.local` convient à un laboratoire isolé. Le suffixe `.local` est déconseillé en production, car il peut entrer en conflit avec d'autres services réseau.
@@ -100,6 +104,24 @@ Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupe
 - Diagnostiquer un gel d'installation en changeant un paramètre à la fois
 - Créer une machine cliente Windows 10, vérifier son édition avec `winver` et régler l'ordre d'amorçage
 - Documenter un projet technique sur GitHub
+- Configurer un poste client, le joindre à un domaine et ouvrir une session de domaine
+- Diagnostiquer une jonction échouée à partir du code d'erreur, du détail DNS et de `ipconfig /all`
+- Tester l'accès réel à un dossier partagé avec deux comptes et interpréter un refus d'autorisation
+
+## Limites du laboratoire et améliorations possibles
+**Limites**
+- Un seul contrôleur de domaine, sans redondance.
+- Aucun service DHCP : toutes les adresses sont saisies à la main.
+- Aucune GPO ni zone de recherche inversée.
+- Windows 10 n'est plus supporté depuis octobre 2025, et le réseau est isolé.
+- Mot de passe de laboratoire unique pour les comptes de test.
+
+**Améliorations possibles**
+- Ajouter un service DHCP et une zone de recherche inversée.
+- Créer des GPO (fond d'écran, restrictions) liées à l'OU `Ordinateurs`.
+- Remplacer le client par Windows 11 Pro.
+- Ajouter un second contrôleur de domaine.
+- Automatiser la création des utilisateurs avec PowerShell, une fois cet outil vu en cours.
 
 Mis à jour après chaque étape.
 
