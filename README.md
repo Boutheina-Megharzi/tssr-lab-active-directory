@@ -18,7 +18,7 @@ Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comp
 | Hyperviseur | VirtualBox 7.2.20 |
 | Serveur | Windows Server 2019 Standard Evaluation (VM `SRV-DC01`) |
 | Domaine | `tssrlab.local` (nom NetBIOS `TSSRLAB`) |
-| Client | Windows 10 Pro (VM, à créer) |
+| Client | Windows 10 Pro (VM `CLT-W10-01`, pas encore joint au domaine) |
 | Réseau | Réseau interne `LAB-AD`, isolé, adresses IP privées |
 
 ## Plan d'adressage
@@ -52,7 +52,7 @@ Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupe
 - [x] Étape 7 : structure d'unités d'organisation ([détails](docs/07-structure-ou.md))
 - [x] Étape 8 : utilisateurs et groupes de sécurité ([détails](docs/08-utilisateurs-groupes.md))
 - [x] Étape 9 : affectation aux groupes et dossier partagé de test ([détails](docs/09-affectation-groupes.md))
-- [ ] Étape 10 : création du poste client Windows 10 Pro
+- [x] Étape 10 : création du poste client Windows 10 Pro ([détails](docs/10-creation-client.md))
 - [ ] Étape 11 : jonction du client au domaine et tests d'accès réels
 
 ## Points de retour (instantanés VirtualBox)
@@ -66,6 +66,8 @@ Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupe
 | `08-utilisateurs-groupes-crees` | 8 utilisateurs et 4 groupes de sécurité créés |
 | `09-groupes-affectes` | Chaque utilisateur est membre du groupe de son service |
 | `09-permissions-ntfs` | Groupes affectés, dossier de test restreint à `GG_Direction` |
+| `10-vm-creee` | VM client créée, Windows non installé |
+| `10-windows10-installe` | Windows 10 Pro installé, compte local, hors domaine |
 
 ## Difficultés rencontrées
 - Erreur PowerShell « chemin introuvable » : il manquait le `\` après `C:`. Résolue en écrivant le chemin complet.
@@ -75,7 +77,8 @@ Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupe
 - Instantané oublié avant le changement de réseau : pris ensuite, avec un nom qui décrit l'état réel.
 - Après la promotion, `nslookup` affiche un délai d'attente sur le serveur DNS tout en résolvant correctement `tssrlab.local`. Cause probable : pas de zone de recherche inversée. Hypothèse non confirmée.
 - Test des permissions : le dossier parent a été partagé par erreur à la place du sous-dossier, détecté grâce au chemin réseau affiché, puis corrigé. Une fenêtre de droits d'OU a aussi été ouverte à la place de celle du dossier, sans modification enregistrée.
-
+- Installation de Windows 10 dans VirtualBox : une première tentative a échoué avec l'erreur « L'ordinateur a redémarré de manière inattendue » (cause non identifiée). L'installation a ensuite réussi avec 1 processeur et 4 Go de mémoire. Un redémarrage sur l'installateur causé par l'ordre d'amorçage a été corrigé.
+  
 ## Choix techniques
 - Le nom de domaine `tssrlab.local` convient à un laboratoire isolé. Le suffixe `.local` est déconseillé en production, car il peut entrer en conflit avec d'autres services réseau.
 - La protection contre la suppression accidentelle reste cochée sur toutes les OU.
@@ -95,6 +98,7 @@ Entreprise fictive de 8 utilisateurs, à raison de deux par service, et 4 groupe
 - Créer des comptes utilisateurs et des groupes de sécurité, puis affecter les utilisateurs aux groupes
 - Partager un dossier, configurer des permissions NTFS pour un groupe et vérifier des droits effectifs
 - Diagnostiquer un gel d'installation en changeant un paramètre à la fois
+- Créer une machine cliente Windows 10, vérifier son édition avec `winver` et régler l'ordre d'amorçage
 - Documenter un projet technique sur GitHub
 
 Mis à jour après chaque étape.
