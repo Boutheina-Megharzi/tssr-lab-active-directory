@@ -43,7 +43,17 @@ tssrlab.local
 8 utilisateurs (2 par service) et 4 groupes globaux : `GG_Direction`, `GG_Comptabilite`, `GG_Informatique`, `GG_Marketing`.
 
 ## Avancement
-(Garde ta section « Avancement » actuelle, avec les 11 cases cochées et leurs liens.)
+- [x] Étape 1 : préparer le laboratoire ([détails](docs/01-preparation.md))
+- [x] Étape 2 : créer la VM serveur ([détails](docs/02-creation-vm-serveur.md))
+- [x] Étape 3 : configurer le réseau isolé et les adresses IP ([détails](docs/03-reseau-ip.md))
+- [x] Étape 4 : renommer le serveur ([détails](docs/04-renommage-serveur.md))
+- [x] Étape 5 : installer le rôle AD DS ([détails](docs/05-installation-adds.md))
+- [x] Étape 6 : promouvoir le contrôleur de domaine `tssrlab.local` ([détails](docs/06-promotion-controleur-domaine.md))
+- [x] Étape 7 : créer la structure d'OU ([détails](docs/07-creation-ou.md))
+- [x] Étape 8 : créer les utilisateurs et les groupes de sécurité ([détails](docs/08-utilisateurs-groupes.md))
+- [x] Étape 9 : affecter les groupes et partager un dossier de test ([détails](docs/09-affectation-groupes.md))
+- [x] Étape 10 : créer le poste client Windows 10 Pro ([détails](docs/10-creation-client.md))
+- [x] Étape 11 : joindre le client au domaine et tester les accès ([détails](docs/11-jonction-domaine.md))
 
 ## Points de retour (instantanés VirtualBox)
 | Instantané | État |
