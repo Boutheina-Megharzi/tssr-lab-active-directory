@@ -72,13 +72,12 @@ tssrlab.local
 | `11-client-joint-serveur` (serveur) | Client rangé dans l'OU Ordinateurs |
 
 ## Difficultés rencontrées
-- **Serveur gelé à l'installation** : passer de 2 à 1 processeur a résolu le problème. VirtualBox tourne en mode native API, cause probable (non confirmée).
-- **Windows 10 : « L'ordinateur a redémarré de manière inattendue »** : cause non identifiée. L'installation a réussi avec 1 processeur et 4 Go. Un redémarrage sur l'installateur venait de l'ordre d'amorçage, corrigé (Disque dur en premier).
-- **Mot de passe Administrateur oublié** : recréer la VM, puis noter le mot de passe hors GitHub.
-- **Instantané oublié avant le changement de réseau** : le prendre ensuite, avec un nom fidèle à l'état réel.
-- **`nslookup` : délai d'attente sur le serveur DNS**, alors que `tssrlab.local` est résolu. Cause probable : pas de zone de recherche inversée (non confirmée).
-- **Mauvais dossier partagé** : détecté grâce au chemin réseau, puis corrigé.
-- **Jonction au domaine échouée** : le client portait l'IP du serveur (« en double »). Corriger en `192.168.10.20` a permis la jonction.
+- **Jonction au domaine échouée** : j'ai obtenu l'erreur « Impossible de contacter un contrôleur de domaine ». J'ai lancé `ipconfig /all` et j'ai constaté l'adresse `192.168.10.10` en double. J'ai corrigé en `192.168.10.20`, puis j'ai réussi la jonction. ([détails](docs/11-jonction-domaine.md))
+- **Redémarrage sur l'installateur** : le client relançait l'installation de Windows 10. J'ai placé **Disque dur** en premier dans l'ordre de démarrage, et le client a démarré sur son système. ([détails](docs/10-creation-client.md))
+- **Installation de Windows 10 interrompue** : j'ai obtenu l'erreur « L'ordinateur a redémarré de manière inattendue ». J'ai recréé la VM avec 1 processeur et 4 Go de mémoire, et l'installation a réussi. ([détails](docs/10-creation-client.md))
+- **Installation du serveur gelée avec 2 processeurs** : je suis passé à 1 processeur, et l'installation est allée à son terme.
+- **Mauvais dossier partagé** : j'ai partagé `Partages` au lieu de `Direction`. J'ai repéré l'erreur grâce au chemin réseau affiché, supprimé le partage, puis créé le bon. ([détails](docs/09-affectation-groupes.md))
+- **Instantané oublié avant le changement de réseau** : je l'ai pris ensuite, avec un nom fidèle à l'état réel : `03-reseau-ip-fixe-ok`.
 
 ## Choix techniques
 - Utiliser `tssrlab.local` en laboratoire isolé. Éviter `.local` en production.
@@ -96,9 +95,3 @@ tssrlab.local
 - Diagnostiquer une jonction échouée à partir de l'erreur, du DNS et de `ipconfig /all`
 - Tester l'accès réel avec deux comptes et interpréter un refus
 - Documenter un projet sur GitHub
-
-## Limites et améliorations
-**Limites :** un seul contrôleur, pas de DHCP, pas de GPO, pas de zone inverse, Windows 10 en fin de support, mot de passe de test unique.
-
-**Améliorations :** ajouter un DHCP et une zone inverse, créer des GPO sur l'OU `Ordinateurs`, passer le client à Windows 11, ajouter un second contrôleur.
-
