@@ -75,7 +75,6 @@ tssrlab.local
 - **Jonction au domaine échouée** : j'ai obtenu l'erreur « Impossible de contacter un contrôleur de domaine ». J'ai lancé `ipconfig /all` et j'ai constaté l'adresse `192.168.10.10` en double. J'ai corrigé en `192.168.10.20`, puis j'ai réussi la jonction. ([détails](docs/11-jonction-domaine.md))
 - **Redémarrage sur l'installateur** : le client relançait l'installation de Windows 10. J'ai placé **Disque dur** en premier dans l'ordre de démarrage, et le client a démarré sur son système. ([détails](docs/10-creation-client.md))
 - **Installation de Windows 10 interrompue** : j'ai obtenu l'erreur « L'ordinateur a redémarré de manière inattendue ». J'ai recréé la VM avec 1 processeur et 4 Go de mémoire, et l'installation a réussi. ([détails](docs/10-creation-client.md))
-- **Installation du serveur gelée avec 2 processeurs** : je suis passé à 1 processeur, et l'installation est allée à son terme.
 - **Mauvais dossier partagé** : j'ai partagé `Partages` au lieu de `Direction`. J'ai repéré l'erreur grâce au chemin réseau affiché, supprimé le partage, puis créé le bon. ([détails](docs/09-affectation-groupes.md))
 - **Instantané oublié avant le changement de réseau** : je l'ai pris ensuite, avec un nom fidèle à l'état réel : `03-reseau-ip-fixe-ok`.
 
