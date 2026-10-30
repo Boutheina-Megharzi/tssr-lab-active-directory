@@ -40,8 +40,5 @@ Impact : le serveur redémarre. Aucune donnée n'est en jeu, car il est encore v
 
 Le renommage n'a modifié ni l'adresse IP, ni le DNS, ni la carte réseau.
 
-## Points d'attention
-- J'ai noté deux avertissements dans le Gestionnaire de serveur : `Microsoft-Windows-Time-Service` ID 134 et `DNS Client Events` ID 1014. Je n'ai pas de capture de ces avertissements et je n'ai pas agi dessus.
-
 ## Prochaine étape
 J'installe le rôle AD DS (étape 5), puis je promeus le serveur en contrôleur de domaine (étape 6). Le suffixe DNS se remplit alors avec le nom du domaine.
