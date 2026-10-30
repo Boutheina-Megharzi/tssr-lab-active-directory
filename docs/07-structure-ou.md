@@ -12,7 +12,7 @@ Petite société avec quatre services : Direction, Comptabilité, Informatique e
 - **Conteneur par défaut** : les dossiers `Users` et `Computers` existent déjà, mais on ne peut pas leur appliquer de GPO. D'où l'intérêt de créer ses propres OU.
 - **Protection contre la suppression accidentelle** : case cochée par défaut, qui empêche de supprimer une OU par erreur.
 
-| | OU | Groupe de sécurité |
+| Critère | OU | Groupe de sécurité |
 |---|---|---|
 | Rôle | Ranger et appliquer des GPO | Donner des permissions |
 | Un utilisateur peut être dans… | Une seule OU | Plusieurs groupes |
