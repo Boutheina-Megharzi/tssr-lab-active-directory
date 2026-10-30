@@ -6,11 +6,19 @@ Laboratoire Active Directory sous Windows Server 2019 : domaine, OU, utilisateur
 Active Directory est l'annuaire central d'un réseau Windows. Il stocke les comptes, les groupes et les ordinateurs. Il décide qui peut se connecter et accéder à quoi.
 
 ## Objectifs
-- Installer un serveur Windows Server 2019
-- Créer un domaine Active Directory
-- Organiser les utilisateurs, groupes et OU
-- Joindre un poste client au domaine
-- Tester, diagnostiquer et documenter chaque étape
+- J'installe un serveur Windows Server 2019.
+- Je crée un domaine Active Directory.
+- J'organise les utilisateurs, les groupes et les OU.
+- Je joins un poste client au domaine.
+- Je teste, je diagnostique et je documente chaque étape.
+
+## Méthode de travail
+1. Je prépare : je lis l'objectif et je vérifie les prérequis.
+2. Je configure : j'applique un seul changement à la fois.
+3. Je vérifie : je teste avec `ping`, `nslookup` ou `ipconfig /all`.
+4. Je protège : je prends un instantané nommé selon l'état réel.
+5. Je diagnostique : je relève l'erreur, je corrige, puis je confirme.
+6. Je documente : je capture la preuve et j'écris ce que j'ai constaté.
 
 ## Environnement
 | Élément | Valeur |
@@ -66,31 +74,34 @@ tssrlab.local
 | `08-utilisateurs-groupes-crees` | 8 utilisateurs et 4 groupes créés |
 | `09-groupes-affectes` | Utilisateurs affectés aux groupes |
 | `09-permissions-ntfs` | Dossier de test restreint à `GG_Direction` |
-| `10-vm-creee` | VM client créée, Windows non installé |
-| `10-windows10-installe` | Windows 10 installé, hors domaine |
+| `10-vm-creee` (client) | VM client créée, Windows non installé |
+| `10-windows10-installe` (client) | Windows 10 installé, hors domaine |
 | `11-client-joint` (client) | Client joint au domaine |
-| `11-client-joint-serveur` (serveur) | Client rangé dans l'OU Ordinateurs |
+| `11-client-joint-serveur` (serveur) | Client rangé dans l'OU `Ordinateurs` |
 
 ## Difficultés rencontrées
-- **Jonction au domaine échouée** : j'ai obtenu l'erreur « Impossible de contacter un contrôleur de domaine ». J'ai lancé `ipconfig /all` et j'ai constaté l'adresse `192.168.10.10` en double. J'ai corrigé en `192.168.10.20`, puis j'ai réussi la jonction. ([détails](docs/11-jonction-domaine.md))
-- **Redémarrage sur l'installateur** : le client relançait l'installation de Windows 10. J'ai placé **Disque dur** en premier dans l'ordre de démarrage, et le client a démarré sur son système. ([détails](docs/10-creation-client.md))
-- **Installation de Windows 10 interrompue** : j'ai obtenu l'erreur « L'ordinateur a redémarré de manière inattendue ». J'ai recréé la VM avec 1 processeur et 4 Go de mémoire, et l'installation a réussi. ([détails](docs/10-creation-client.md))
-- **Mauvais dossier partagé** : j'ai partagé `Partages` au lieu de `Direction`. J'ai repéré l'erreur grâce au chemin réseau affiché, supprimé le partage, puis créé le bon. ([détails](docs/09-affectation-groupes.md))
-- **Instantané oublié avant le changement de réseau** : je l'ai pris ensuite, avec un nom fidèle à l'état réel : `03-reseau-ip-fixe-ok`.
+- **Jonction au domaine échouée** : j'ai obtenu l'erreur « Impossible de contacter un contrôleur de domaine ». J'ai constaté que le client portait l'adresse du serveur, signalée « en double ». J'ai corrigé en `192.168.10.20`, puis j'ai réussi la jonction. ([détails](docs/11-jonction-domaine.md))
+- **Redémarrage sur l'installateur** : le client relançait l'installation de Windows 10. J'ai placé **Disque dur** en premier dans l'ordre de démarrage. ([détails](docs/10-creation-client.md))
+- **Mauvais dossier partagé** : j'ai partagé `Partages` au lieu de `Direction`. J'ai supprimé ce partage, puis créé le bon. ([détails](docs/09-affectation-groupes.md))
+- **Faute de frappe dans un identifiant** : j'ai tapé `clair.martin` au lieu de `claire.martin`. Je l'ai repéré avant de valider et corrigé aussi le champ « antérieur à Windows 2000 ». ([détails](docs/08-utilisateurs-groupes.md))
+- **Instantané oublié avant le changement de réseau** : je l'ai pris ensuite, avec un nom fidèle à l'état réel : `03-reseau-ip-fixe-ok`. ([détails](docs/03-reseau-ip.md))
+- **Erreur de chemin dans PowerShell** : il manquait le `\` après `C:`. J'ai écrit le chemin complet. ([détails](docs/01-preparation.md))
 
 ## Choix techniques
-- Utiliser `tssrlab.local` en laboratoire isolé. Éviter `.local` en production.
-- Garder la protection contre la suppression accidentelle sur toutes les OU.
-- Partager un mot de passe de laboratoire entre comptes de test, conservé hors du dépôt. En production, un mot de passe par utilisateur.
+- J'utilise `tssrlab.local` en laboratoire isolé. J'évite `.local` en production.
+- Je garde la protection contre la suppression accidentelle sur toutes les OU.
+- Les comptes de test partagent un mot de passe de laboratoire, conservé hors du dépôt. En production, chaque utilisateur aurait le sien.
 
 ## Compétences travaillées
 - Créer et dimensionner une machine virtuelle
+- Calculer l'empreinte SHA256 d'un ISO
 - Configurer un réseau interne et une IP statique
 - Tester avec `ping`, `ipconfig /all` et `nslookup`
 - Installer le rôle AD DS et promouvoir un contrôleur de domaine
 - Créer des OU, des utilisateurs et des groupes de sécurité
 - Partager un dossier, configurer des permissions NTFS et vérifier les droits effectifs
+- Créer un poste client Windows 10 Pro et régler l'ordre d'amorçage
 - Joindre un client au domaine et ouvrir une session de domaine
 - Diagnostiquer une jonction échouée à partir de l'erreur, du DNS et de `ipconfig /all`
 - Tester l'accès réel avec deux comptes et interpréter un refus
-- Documenter un projet sur GitHub
+- Documenter un projet technique sur GitHub
