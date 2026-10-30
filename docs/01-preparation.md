@@ -15,7 +15,7 @@ Je vérifie que mon PC peut héberger le laboratoire, puis je calcule l'empreint
 | Système | Windows 11 Famille, version 25H2 | [01-windows-hote.png](../screenshots/01-windows-hote.png) |
 | Processeur | Intel Core Ultra 5 322, 6 cœurs, 6 processeurs logiques | [01-processeur-pc.png](../screenshots/01-processeur-pc.png) |
 | Virtualisation | Activée | [01-processeur-pc.png](../screenshots/01-processeur-pc.png) |
-| Mémoire | 11,2 Go utilisés, 4,3 Go disponibles | [01-hote-memoire.png](../screenshots/01-hote-memoire.png) |
+| Mémoire | 11,3 Go utilisés, 4,2 Go disponibles | [01-hote-memoire.png](../screenshots/01-hote-memoire.png) |
 | VirtualBox | Version 7.2.20 | [01-virtualbox-version.png](../screenshots/01-virtualbox-version.png) |
 | ISO du serveur | Windows Server 2019 Standard Evaluation (fr-FR), environ 5,29 Gio | [03-hash-iso.png](../screenshots/03-hash-iso.png) |
 | ISO du client | Windows 10 22H2, environ 4,6 Gio | [01-iso-telechargees.png](../screenshots/01-iso-telechargees.png) |
@@ -43,7 +43,7 @@ Je n'ai pas comparé cette empreinte à une valeur de référence. Je la note po
 - Les disques virtuels occupent de la place : 50 Go au maximum par VM.
 
 ## Points d'attention
-- Lors de la capture, 11,2 Go de mémoire étaient utilisés et 4,3 Go disponibles. Je ferme des applications avant de lancer les deux VM.
+- Lors de la capture, 11,3 Go de mémoire étaient utilisés et 4,2 Go disponibles. Je ferme des applications avant de lancer les deux VM.
 - Mon PC est en Windows 11 Famille. Cette édition n'a pas d'effet sur les VM, mais le **client** doit être en Windows 10 **Pro** pour joindre un domaine.
 
 ## Difficultés rencontrées
