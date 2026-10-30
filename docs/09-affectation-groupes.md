@@ -42,12 +42,13 @@ Je donne chaque permission une seule fois, au groupe. J'ajoute un compte au grou
 | Droits effectifs de `claire.martin` | Droits de lecture, de création et de suppression accordés. Contrôle total, suppression de sous-dossier et fichier, et modification des autorisations refusés (limités par les autorisations de fichiers) | [09-acces-effectif-claire.png](../screenshots/09-acces-effectif-claire.png) |
 | Droits effectifs de `lucas.petit` | Aucun droit accordé sur les 13 lignes visibles, toutes limitées par les autorisations de fichiers | [09-acces-effectif-lucas.png](../screenshots/09-acces-effectif-lucas.png) |
 | Instantané | `09-permissions-ntfs` | [09-snapshot.png](../screenshots/09-snapshot.png) |
+| Permissions du partage | `Tout le monde` : Contrôle total. La restriction vient donc des permissions NTFS | [09-partage-avance.png](../screenshots/09-partage-avance.png) |
 
 ## Conclusion du test
 J'ai constaté que le calcul des droits effectifs donne des résultats différents pour deux comptes du même domaine : `claire.martin`, membre de `GG_Direction`, obtient des droits de modification sur le dossier, alors que `lucas.petit`, membre de `GG_Comptabilite`, n'obtient aucun droit. Le calcul se base sur les groupes et ne tient pas compte des permissions de partage. J'ai ensuite fait le test d'accès réel depuis le client Windows 10 joint au domaine : voir l'[étape 11](11-jonction-domaine.md).
 
 ## Difficultés rencontrées
-- J'ai partagé par erreur le dossier parent `C:\Partages` sous le nom `Direction`. Le chemin réseau affiché m'a révélé l'erreur. J'ai supprimé le partage du dossier parent, puis j'ai partagé le bon dossier. Preuves : [09-partage-erreur-partages.png](../screenshots/09-partage-erreur-partages.png) et [09-partage-corrige.png](../screenshots/09-partage-corrige.png)
+- J'ai partagé par erreur le dossier parent `C:\Partages` sous le nom `Direction`. La fenêtre « Partage avancé » affichait le nom `Direction` alors que le dossier ouvert s'appelait `Partages`, ce qui m'a révélé l'erreur. J'ai supprimé ce partage (état « Non partagé » constaté à 14:51), puis j'ai partagé le bon dossier. Preuves : [09-partage-erreur-partages.png](../screenshots/09-partage-erreur-partages.png) et [09-partage-corrige.png](../screenshots/09-partage-corrige.png)
 - J'ai ouvert par erreur une fenêtre qui montrait les droits de l'OU `Direction` dans Active Directory, et non ceux du dossier. Les onglets et les groupes affichés (Admins du domaine, SELF) me l'ont révélé. J'ai revérifié l'état de l'OU : héritage actif, bouton Appliquer grisé. Je n'ai pas conservé de capture de cette fenêtre.
 
 ## Points d'attention
