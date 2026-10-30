@@ -43,6 +43,7 @@ Je donne chaque permission une seule fois, au groupe. J'ajoute un compte au grou
 | Droits effectifs de `lucas.petit` | Aucun droit accordé sur les 13 lignes visibles, toutes limitées par les autorisations de fichiers | [09-acces-effectif-lucas.png](../screenshots/09-acces-effectif-lucas.png) |
 | Instantané | `09-permissions-ntfs` | [09-snapshot.png](../screenshots/09-snapshot.png) |
 | Permissions du partage | `Tout le monde` : Contrôle total. La restriction vient donc des permissions NTFS | [09-partage-avance.png](../screenshots/09-partage-avance.png) |
+| Partage du dossier `Direction` | État « Partagé », chemin réseau `\\SRV-DC01\Direction` | [09-partage-avance.png](../screenshots/09-partage-avance.png) |
 
 ## Conclusion du test
 J'ai constaté que le calcul des droits effectifs donne des résultats différents pour deux comptes du même domaine : `claire.martin`, membre de `GG_Direction`, obtient des droits de modification sur le dossier, alors que `lucas.petit`, membre de `GG_Comptabilite`, n'obtient aucun droit. Le calcul se base sur les groupes et ne tient pas compte des permissions de partage. J'ai ensuite fait le test d'accès réel depuis le client Windows 10 joint au domaine : voir l'[étape 11](11-jonction-domaine.md).
