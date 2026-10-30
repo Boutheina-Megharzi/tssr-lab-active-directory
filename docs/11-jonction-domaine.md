@@ -1,7 +1,7 @@
 # Étape 11 : jonction du client au domaine et tests d'accès
 
 ## Objectif
-Joindre `CLT-W10-01` au domaine `tssrlab.local`, ouvrir des sessions avec des comptes du domaine, puis tester l'accès réel au dossier partagé `\\SRV-DC01\Direction`.
+Je joins `CLT-W10-01` au domaine `tssrlab.local`, j'ouvre des sessions avec des comptes du domaine, puis je teste l'accès réel au dossier partagé `\\SRV-DC01\Direction`.
 
 ## Notions utilisées
 - **Domaine et groupe de travail** : dans un domaine, le contrôleur centralise les comptes. En groupe de travail, chaque machine gère les siens.
@@ -11,22 +11,24 @@ Joindre `CLT-W10-01` au domaine `tssrlab.local`, ouvrir des sessions avec des co
 - **Objet ordinateur** : la jonction crée un compte pour la machine dans l'annuaire, d'abord dans le conteneur `Computers`.
 
 ## Réalisation
-1. Démarrage du serveur, puis du client.
-2. Configuration IP du client : `192.168.10.20`, masque `255.255.255.0`, sans passerelle, DNS `192.168.10.10`.
-3. Renommage du client en `CLT-W10-01`.
-4. Jonction au domaine `tssrlab.local` avec le compte `TSSRLAB\Administrateur`, puis redémarrage.
-5. Ouverture de session avec `TSSRLAB\claire.martin`, puis test du dossier partagé.
-6. Déconnexion complète, ouverture de session avec `TSSRLAB\lucas.petit`, puis même test.
-7. Déplacement de l'objet ordinateur vers l'OU `Entreprise/Ordinateurs`.
-8. Arrêt des deux machines et instantanés.
+1. Je démarre le serveur, puis le client.
+2. Je configure l'IP du client : `192.168.10.20`, masque `255.255.255.0`, sans passerelle, DNS `192.168.10.10`.
+3. Je renomme le client en `CLT-W10-01`.
+4. Je joins le domaine `tssrlab.local` avec le compte `TSSRLAB\Administrateur`, puis je redémarre.
+5. J'ouvre une session avec `TSSRLAB\claire.martin`, puis je teste le dossier partagé.
+6. Je me déconnecte complètement, j'ouvre une session avec `TSSRLAB\lucas.petit`, puis je refais le même test.
+7. Je déplace l'objet ordinateur vers l'OU `Entreprise/Ordinateurs`.
+8. J'arrête les deux machines et je prends les instantanés.
 
 Impact : le client crée un compte d'ordinateur dans l'annuaire. Les mots de passe ne sont pas publiés dans ce dépôt.
 
 ## Tests et résultats
 | Test | Résultat | Preuve |
 |---|---|---|
-| Message de jonction | « Bienvenue dans le domaine tssrlab.local » | [11-bienvenue-domaine.png](../screenshots/11-bienvenue-domaine.png) |
-| IP et DNS du client après correction, `nslookup tssrlab.local` | Constatés et validés, sans capture conservée | |
+| Diagnostic avant correction : `ipconfig /all` | Adresse `192.168.10.10` signalée « en double » et adresse automatique `169.254.47.126` | [11-client-ipconfig-avant.png](../screenshots/11-client-ipconfig-avant.png) |
+| Diagnostic avant correction : `nslookup` et `ping` du serveur | Échec : « No response from server », puis 4 paquets perdus sur 4 | [11-client-nslookup-ping-echec.png](../screenshots/11-client-nslookup-ping-echec.png) |
+| Message de jonction (après correction) | « Bienvenue dans le domaine tssrlab.local » | [11-bienvenue-domaine.png](../screenshots/11-bienvenue-domaine.png) |
+| IP `192.168.10.20`, DNS et `nslookup tssrlab.local` après correction | Constatés et validés, sans capture conservée | |
 | Session de domaine de Claire | `whoami` : `tssrlab\claire.martin`, `%USERDOMAIN%` : `TSSRLAB` | [11-whoami-claire.png](../screenshots/11-whoami-claire.png) |
 | Accès de Claire à `\\SRV-DC01\Direction` | Accepté : le fichier `test-claire.txt` a été créé (15:28:08) puis modifié (15:33:56), 11 octets | [11-acces-claire.png](../screenshots/11-acces-claire.png) |
 | Session de domaine de Lucas | `whoami` : `tssrlab\lucas.petit` | [11-whoami-lucas.png](../screenshots/11-whoami-lucas.png) |
@@ -37,15 +39,25 @@ Impact : le client crée un compte d'ordinateur dans l'annuaire. Les mots de pas
 | Instantané du serveur | `11-client-joint-serveur` | [11-snapshot-serveur.png](../screenshots/11-snapshot-serveur.png) |
 
 ## Conclusion du test
-Les deux comptes sont authentifiés par le domaine avec le même mot de passe de laboratoire. Claire, membre de `GG_Direction`, accède au dossier et peut y écrire. Lucas, membre de `GG_Comptabilite`, est refusé. La différence vient donc de l'autorisation, c'est-à-dire de l'appartenance aux groupes. Ce résultat correspond au calcul des droits effectifs de l'étape 9.
+J'ai constaté que les deux comptes sont authentifiés par le domaine avec le même mot de passe de laboratoire. Claire, membre de `GG_Direction`, accède au dossier et peut y écrire. Lucas, membre de `GG_Comptabilite`, est refusé. La différence vient donc de l'autorisation, c'est-à-dire de l'appartenance aux groupes. Ce résultat correspond au calcul des droits effectifs de l'étape 9.
 
 ## Difficultés rencontrées
-- **Échec de la première jonction** : l'erreur « Impossible de contacter un contrôleur de domaine Active Directory » (délai dépassé) est apparue. Le détail indiquait que le serveur DNS `192.168.10.10` ne répondait pas, pour la requête `_ldap._tcp.dc._msdcs.tssrlab.local`. `ipconfig /all` a montré que le client portait par erreur l'adresse du serveur (`192.168.10.10`, signalée « en double »), ce qui avait déclenché une adresse automatique en `169.254`. L'adresse a été corrigée en `192.168.10.20`, puis la jonction a réussi. Preuves : [11-erreur-jonction.png](../screenshots/11-erreur-jonction.png), [11-erreur-jonction-details.png](../screenshots/11-erreur-jonction-details.png) et [11-client-ipconfig-avant.png](../screenshots/11-client-ipconfig-avant.png)
+**Échec de la jonction au domaine.** J'ai obtenu l'erreur « Impossible de contacter un contrôleur de domaine Active Directory » (délai dépassé). Le détail indiquait que le serveur DNS `192.168.10.10` ne répondait pas, pour la requête `_ldap._tcp.dc._msdcs.tssrlab.local`. Preuves : [11-erreur-jonction.png](../screenshots/11-erreur-jonction.png) et [11-erreur-jonction-details.png](../screenshots/11-erreur-jonction-details.png).
+
+Mes constats sur le client avant la correction :
+- J'avais saisi l'adresse `192.168.10.10`, celle du serveur, au lieu de `192.168.10.20` ([11-client-ip-erronee.png](../screenshots/11-client-ip-erronee.png)).
+- `ipconfig /all` signalait cette adresse « en double » et affichait en plus l'adresse automatique `169.254.47.126` ([11-client-ipconfig-avant.png](../screenshots/11-client-ipconfig-avant.png)).
+- `nslookup tssrlab.local` répondait « No response from server », et `ping 192.168.10.10` perdait 4 paquets sur 4 ([11-client-nslookup-ping-echec.png](../screenshots/11-client-nslookup-ping-echec.png)).
+
+J'ai corrigé l'adresse du client en `192.168.10.20`, puis j'ai réussi la jonction.
+
+Leçon : deux machines ne peuvent pas partager la même adresse IP. Avant une jonction, je vérifie l'adresse avec `ipconfig /all`, puis le DNS avec `nslookup`.
 
 ## Points d'attention
-- Le test d'accès repose sur deux comptes et un seul dossier partagé. Il ne couvre pas les autres services.
+- Mon test d'accès repose sur deux comptes et un seul dossier partagé. Il ne couvre pas les autres services.
 - Les comptes de test partagent un mot de passe de laboratoire. En production, chaque utilisateur aurait le sien.
 - Aucune stratégie de groupe (GPO) n'est encore appliquée à l'OU `Ordinateurs`.
+- Je n'ai pas de capture des vérifications finales de l'IP et de `nslookup`.
 
 ## Prochaine étape
-Bilan du laboratoire, tests complémentaires (DNS, pare-feu) et améliorations possibles.
+Je finalise le README et je vérifie le dépôt.
