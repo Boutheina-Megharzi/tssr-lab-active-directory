@@ -32,14 +32,11 @@ Installer le rôle AD DS (Active Directory Domain Services) sur `SRV-DC01`. Le s
 Les instantanés forment une chaîne : `03-reseau-ip-fixe-ok`, puis `04-serveur-renomme`, puis `05-adds-installe`.
 
 ## Différence entre installer et promouvoir
-[Réécris ici ta réponse, avec tes propres mots.]
+J'installe le rôle AD DS pour ajouter les programmes d'Active Directory au serveur, puis je le promeus pour créer le domaine et en faire le contrôleur.
 
 ## Points d'attention
 - Les avertissements d'événements (Time-Service 134 et DNS Client Events 1014) sont toujours présents dans le Gestionnaire de serveur. Cause probable : le réseau est isolé, sans Internet. À confirmer.
 - Le drapeau jaune est normal : il signale que la promotion reste à faire.
-
-## Difficultés rencontrées
-[Écris une difficulté réelle, ou « Aucune » si tu n'en as pas eu.]
 
 ## Prochaine étape
 Promouvoir `SRV-DC01` en contrôleur de domaine et créer le domaine.
