@@ -1,7 +1,7 @@
 # Étape 9 : affectation aux groupes et dossier partagé
 
 ## Objectif
-Ajouter chaque utilisateur au groupe de son service, puis tester les permissions d'un groupe sur un dossier partagé.
+J'ajoute chaque utilisateur au groupe de son service, puis je teste les permissions d'un groupe sur un dossier partagé.
 
 ## Notions utilisées
 - **Membre d'un groupe** : l'utilisateur reçoit les permissions données au groupe.
@@ -9,7 +9,8 @@ Ajouter chaque utilisateur au groupe de son service, puis tester les permissions
 - **Héritage** : un dossier reprend par défaut les droits de son dossier parent.
 - **Accès effectif** : calcul des droits d'après les groupes. Ce n'est pas un accès réel depuis un poste client.
 
-**Pourquoi je donne les permissions à un groupe :** Je donne chaque permission une seule fois, au groupe. J'ajoute un compte au groupe quand une personne arrive. Je retire ce compte quand elle part. Je gagne du temps et je limite les erreurs.
+## Pourquoi je donne les permissions à un groupe
+Je donne chaque permission une seule fois, au groupe. J'ajoute un compte au groupe quand une personne arrive. Je retire ce compte quand elle part. Je gagne du temps et je limite les erreurs.
 
 ## Affectation réalisée
 | Groupe | Membres |
@@ -20,12 +21,12 @@ Ajouter chaque utilisateur au groupe de son service, puis tester les permissions
 | `GG_Marketing` | Hugo Lambert, Emma Girard |
 
 ## Réalisation
-1. Propriétés du groupe, onglet Membres, bouton Ajouter.
-2. Saisie des identifiants séparés par un point-virgule, puis Vérifier les noms.
-3. Même opération pour les quatre groupes.
-4. Création du dossier `C:\Partages\Direction` et partage sous `\\SRV-DC01\Direction`.
-5. Désactivation de l'héritage NTFS, retrait des entrées « Utilisateurs » et ajout de `GG_Direction` avec la permission Modification.
-6. Relevé des droits effectifs de deux comptes.
+1. J'ouvre les propriétés du groupe, onglet **Membres**, bouton **Ajouter**.
+2. Je saisis les identifiants séparés par un point-virgule, puis je clique sur **Vérifier les noms**.
+3. Je fais la même opération pour les quatre groupes.
+4. Je crée le dossier `C:\Partages\Direction` et je le partage sous `\\SRV-DC01\Direction`.
+5. Je désactive l'héritage NTFS, je retire les entrées « Utilisateurs » et j'ajoute `GG_Direction` avec la permission Modification.
+6. Je relève les droits effectifs de deux comptes.
 
 ## Tests et résultats
 | Test | Résultat | Preuve |
@@ -43,15 +44,15 @@ Ajouter chaque utilisateur au groupe de son service, puis tester les permissions
 | Instantané | `09-permissions-ntfs` | [09-snapshot.png](../screenshots/09-snapshot.png) |
 
 ## Conclusion du test
-Le calcul des droits effectifs donne des résultats différents pour deux comptes du même domaine : `claire.martin`, membre de `GG_Direction`, obtient des droits de modification sur le dossier, alors que `lucas.petit`, membre de `GG_Comptabilite`, n'obtient aucun droit. Le calcul se base sur les groupes et ne tient pas compte des permissions de partage. Le test d'accès réel est prévu depuis le client Windows 10 joint au domaine.
+J'ai constaté que le calcul des droits effectifs donne des résultats différents pour deux comptes du même domaine : `claire.martin`, membre de `GG_Direction`, obtient des droits de modification sur le dossier, alors que `lucas.petit`, membre de `GG_Comptabilite`, n'obtient aucun droit. Le calcul se base sur les groupes et ne tient pas compte des permissions de partage. J'ai ensuite fait le test d'accès réel depuis le client Windows 10 joint au domaine : voir l'[étape 11](11-jonction-domaine.md).
 
 ## Difficultés rencontrées
-- Le dossier parent `C:\Partages` a été partagé par erreur sous le nom `Direction`. Le chemin réseau affiché a révélé l'erreur. Le partage du dossier parent a ensuite été supprimé, puis le bon dossier a été partagé. Preuves : [09-partage-erreur-partages.png](../screenshots/09-partage-erreur-partages.png) et [09-partage-corrige.png](../screenshots/09-partage-corrige.png)
-- Une première fenêtre ouverte par erreur montrait les droits de l'OU `Direction` dans Active Directory, et non ceux du dossier. Les onglets et les groupes affichés (Admins du domaine, SELF) l'ont révélé. L'état de l'OU a été revérifié : héritage actif, bouton Appliquer grisé.
+- J'ai partagé par erreur le dossier parent `C:\Partages` sous le nom `Direction`. Le chemin réseau affiché m'a révélé l'erreur. J'ai supprimé le partage du dossier parent, puis j'ai partagé le bon dossier. Preuves : [09-partage-erreur-partages.png](../screenshots/09-partage-erreur-partages.png) et [09-partage-corrige.png](../screenshots/09-partage-corrige.png)
+- J'ai ouvert par erreur une fenêtre qui montrait les droits de l'OU `Direction` dans Active Directory, et non ceux du dossier. Les onglets et les groupes affichés (Admins du domaine, SELF) me l'ont révélé. J'ai revérifié l'état de l'OU : héritage actif, bouton Appliquer grisé. Je n'ai pas conservé de capture de cette fenêtre.
 
 ## Points d'attention
 - Chaque groupe contient exactement deux membres, issus de l'OU du même service.
 - Les mots de passe des comptes de test ne figurent pas dans ce dépôt.
 
 ## Prochaine étape
-Créer le poste client Windows 10 Pro, puis tester l'accès réel au dossier partagé.
+Je crée le poste client Windows 10 Pro, puis je teste l'accès réel au dossier partagé.
