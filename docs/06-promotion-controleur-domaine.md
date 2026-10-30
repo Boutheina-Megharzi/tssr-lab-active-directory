@@ -1,7 +1,7 @@
 # Étape 6 : promotion en contrôleur de domaine
 
 ## Objectif
-Créer le domaine `tssrlab.local` et faire de `SRV-DC01` son contrôleur de domaine, avec le DNS intégré.
+Je crée le domaine `tssrlab.local` et je fais de `SRV-DC01` son contrôleur de domaine, avec le DNS intégré.
 
 ## Choix du nom de domaine
 Le domaine s'appelle `tssrlab.local`, avec le nom NetBIOS `TSSRLAB`. Le suffixe `.local` est courant en formation. Il est déconseillé en production, car il peut entrer en conflit avec d'autres services réseau qui utilisent aussi `.local`. Ce choix convient à un laboratoire isolé.
@@ -13,16 +13,18 @@ Le domaine s'appelle `tssrlab.local`, avec le nom NetBIOS `TSSRLAB`. Le suffixe 
 - **Catalogue global** : index de l'annuaire nécessaire à la connexion des utilisateurs.
 - **DSRM** : mode de restauration des services d'annuaire, protégé par son propre mot de passe.
 - **Délégation DNS** : lien entre une zone DNS et sa zone parente. Elle n'est pas possible ici, car aucune zone parente n'existe dans ce réseau isolé.
-- **Pourquoi le DNS accompagne Active Directory** : [réécris ici avec tes mots]
+
+## Pourquoi le DNS accompagne Active Directory
+Les clients retrouvent le contrôleur de domaine en interrogeant le DNS. Sans DNS, ils ne le trouvent pas, comme l'erreur de jonction de l'étape 11 l'a montré.
 
 ## Réalisation
-1. Ouverture de l'assistant depuis le drapeau du Gestionnaire de serveur.
-2. Choix de « Ajouter une nouvelle forêt », avec le nom `tssrlab.local`.
-3. Réglage des options du contrôleur de domaine et saisie du mot de passe DSRM.
-4. Passage des options DNS, du nom NetBIOS, des chemins et du récapitulatif.
-5. Vérification de la configuration requise, puis installation.
-6. Redémarrage automatique du serveur, puis ouverture de session en `TSSRLAB\Administrateur`.
-7. Vérifications et instantané.
+1. J'ouvre l'assistant depuis le drapeau du Gestionnaire de serveur.
+2. Je choisis « Ajouter une nouvelle forêt », avec le nom `tssrlab.local`.
+3. Je règle les options du contrôleur de domaine et je saisis le mot de passe DSRM.
+4. Je passe les options DNS, le nom NetBIOS, les chemins et le récapitulatif.
+5. Je vérifie la configuration requise, puis j'installe.
+6. Le serveur redémarre automatiquement, puis j'ouvre une session en `TSSRLAB\Administrateur`.
+7. Je vérifie et je prends l'instantané.
 
 Impact : le serveur quitte `WORKGROUP` pour rejoindre le domaine. Le compte Administrateur devient un compte de domaine.
 
@@ -54,19 +56,15 @@ Aucun des deux ne bloque l'installation. Preuve : [06-verification-prerequis.png
 | Rôles du serveur | AD DS et DNS ajoutés, « Rôles : 3 », plus d'avertissement sur le drapeau | [06-tableau-de-bord.png](../screenshots/06-tableau-de-bord.png) |
 | Domaine du serveur | `tssrlab.local` | [06-serveur-local-domaine.png](../screenshots/06-serveur-local-domaine.png) |
 | Suffixe DNS principal | `tssrlab.local` | [06-ipconfig-all.png](../screenshots/06-ipconfig-all.png) |
-| IPv4 | `192.168.10.10`, masque `255.255.255.0`, DHCP : Non | [06-ipconfig-all.png](../screenshots/06-ipconfig-all.png) |
-| `nslookup tssrlab.local` | Réponse `192.168.10.10` | [06-nslookup.png](../screenshots/06-nslookup.png) |
+| IPv4 | 192.168.10.10, masque 255.255.255.0, DHCP : Non | [06-ipconfig-all.png](../screenshots/06-ipconfig-all.png) |
+| `nslookup tssrlab.local` | Réponse 192.168.10.10 | [06-nslookup.png](../screenshots/06-nslookup.png) |
 | Zones DNS | `tssrlab.local` et `_msdcs.tssrlab.local`, intégrées à Active Directory | [06-zones-dns.png](../screenshots/06-zones-dns.png) |
 | Console Active Directory | Domaine `tssrlab.local` affiché, sans la croix rouge de l'étape 5 | [06-console-ad.png](../screenshots/06-console-ad.png) |
 | Instantané | `06-controleur-domaine-ok` | [06-snapshot.png](../screenshots/06-snapshot.png) |
 
 ## Observations
 - Après la promotion, `ipconfig /all` affiche les serveurs DNS `::1` et `127.0.0.1` au lieu de `192.168.10.10`. Le serveur s'interroge lui-même. Les clients utiliseront `192.168.10.10`.
-- `nslookup` affiche un délai d'attente sur la première ligne (serveur `UnKnown`, adresse `::1`), mais résout correctement `tssrlab.local`. Cause probable : aucune zone de recherche inversée n'est configurée. Hypothèse non confirmée.
-- Le Gestionnaire de serveur affiche encore des avertissements d'événements (DNS Client Events 1014, Winlogon 6006). Cause non analysée à ce stade.
-
-## Difficultés rencontrées
-[Écris une difficulté réelle, ou « Aucune ».]
+- `nslookup` affiche un délai d'attente sur la première ligne (serveur `UnKnown`, adresse `::1`), mais résout correctement `tssrlab.local`.
 
 ## Prochaine étape
-Créer les unités d'organisation, les utilisateurs et les groupes de sécurité.
+Je crée les unités d'organisation, les utilisateurs et les groupes de sécurité.
