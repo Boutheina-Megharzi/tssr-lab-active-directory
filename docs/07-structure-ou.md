@@ -1,10 +1,10 @@
 # Étape 7 : structure d'unités d'organisation
 
 ## Objectif
-Organiser l'annuaire `tssrlab.local` comme une petite entreprise fictive, en créant une arborescence d'unités d'organisation (OU).
+J'organise l'annuaire `tssrlab.local` comme une petite entreprise fictive, en créant une arborescence d'unités d'organisation (OU).
 
 ## Entreprise fictive
-Petite société avec quatre services : Direction, Comptabilité, Informatique et Marketing. Les utilisateurs et les groupes de sécurité seront créés à l'étape suivante.
+Petite société avec quatre services : Direction, Comptabilité, Informatique et Marketing. Je crée les utilisateurs et les groupes de sécurité à l'étape suivante.
 
 ## Notions utilisées
 - **OU (unité d'organisation)** : dossier de l'annuaire. Elle sert à ranger les objets et à leur appliquer des stratégies de groupe (GPO).
@@ -17,31 +17,31 @@ Petite société avec quatre services : Direction, Comptabilité, Informatique e
 | Rôle | Ranger et appliquer des GPO | Donner des permissions |
 | Un utilisateur peut être dans… | Une seule OU | Plusieurs groupes |
 
-**Pourquoi un utilisateur n'est que dans une OU, mais dans plusieurs groupes :** une OU est un dossier, et un objet n'est rangé qu'à un seul endroit. Un groupe est une liste de membres, et une personne peut figurer sur plusieurs listes. Par exemple, un technicien est dans l'OU Informatique et peut être membre de plusieurs groupes.
+Un utilisateur n'est que dans une OU, mais dans plusieurs groupes : une OU est un dossier, et un objet n'est rangé qu'à un seul endroit. Un groupe est une liste de membres, et une personne peut figurer sur plusieurs listes. Par exemple, un technicien est dans l'OU `Informatique` et peut être membre de plusieurs groupes.
 
 ## Structure créée
-
-    tssrlab.local
-    └── Entreprise
-        ├── Direction
-        ├── Comptabilité
-        ├── Informatique
-        ├── Marketing
-        ├── Groupes
-        └── Ordinateurs
-
+```
+tssrlab.local
+└── Entreprise
+    ├── Direction
+    ├── Comptabilité
+    ├── Informatique
+    ├── Marketing
+    ├── Groupes
+    └── Ordinateurs
+```
 - `Entreprise` : OU racine, qui regroupe tout et sépare les objets des conteneurs par défaut.
 - Une OU par service : elle contiendra les utilisateurs du service.
 - `Groupes` : elle contiendra les groupes de sécurité.
 - `Ordinateurs` : elle accueillera le poste client.
 
 ## Réalisation
-1. Ouverture de Outils > Utilisateurs et ordinateurs Active Directory.
-2. Clic droit sur `tssrlab.local` > Nouveau > Unité d'organisation : création de `Entreprise`.
-3. Clic droit sur `Entreprise` > Nouveau > Unité d'organisation : création des six OU enfants.
-4. Protection contre la suppression laissée cochée pour chaque OU.
-5. Activation des fonctionnalités avancées dans le menu Affichage pour lire l'onglet Objet.
-6. Vérifications et test de suppression.
+1. J'ouvre **Outils** > **Utilisateurs et ordinateurs Active Directory**.
+2. Je fais un clic droit sur `tssrlab.local` > **Nouveau** > **Unité d'organisation** : je crée `Entreprise`.
+3. Je fais un clic droit sur `Entreprise` > **Nouveau** > **Unité d'organisation** : je crée les six OU enfants.
+4. Je laisse la protection contre la suppression cochée pour chaque OU.
+5. J'active les fonctionnalités avancées dans le menu **Affichage** pour lire l'onglet Objet.
+6. Je vérifie et je teste la suppression.
 
 ## Tests et résultats
 | Test | Résultat | Preuve |
@@ -58,12 +58,9 @@ Petite société avec quatre services : Direction, Comptabilité, Informatique e
 | Instantané | `07-ou-creees` | [07-snapshot.png](../screenshots/07-snapshot.png) |
 
 ## Points d'attention
-- L'OU est nommée `Comptabilité` avec un accent. Cela fonctionne dans l'interface graphique. Les accents posent parfois problème dans les scripts, donc les identifiants des utilisateurs et des groupes seront écrits sans accent.
-- Le message de refus cite deux causes possibles : privilèges insuffisants ou objet protégé. La session était ouverte en Administrateur et la case de protection était cochée à la création. La protection est donc la cause probable. Hypothèse non confirmée par un second test.
+- J'ai nommé l'OU `Comptabilité` avec un accent, alors que `Comptabilite` était prévu. Cela fonctionne dans l'interface graphique. Les accents posent parfois problème dans les scripts, donc j'écris les identifiants des utilisateurs et des groupes sans accent.
+- Le message de refus cite deux causes possibles : privilèges insuffisants ou objet protégé. La session était ouverte en Administrateur et la case de protection était cochée à la création.
 - Les dossiers supplémentaires visibles dans l'arborescence (`Keys`, `LostAndFound`, `System`, etc.) apparaissent à cause des fonctionnalités avancées.
 
-## Difficultés rencontrées
-Aucune difficulté technique. Écart avec le plan : l'OU `Comptabilité` a été créée avec un accent, alors que `Comptabilite` était prévu (voir Points d'attention).
-
 ## Prochaine étape
-Créer les utilisateurs et les groupes de sécurité.
+Je crée les utilisateurs et les groupes de sécurité.
