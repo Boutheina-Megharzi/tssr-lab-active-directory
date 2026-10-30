@@ -53,11 +53,11 @@ tssrlab.local
 ## Avancement
 - [x] Étape 1 : préparer le laboratoire ([détails](docs/01-preparation.md))
 - [x] Étape 2 : créer la VM serveur ([détails](docs/02-creation-vm-serveur.md))
-- [x] Étape 3 : configurer le réseau isolé et les adresses IP ([détails](docs/03-reseau-ip.md))
+- [x] Étape 3 : configurer le réseau isolé et les adresses IP ([détails](docs/03-reseau-isole.md))
 - [x] Étape 4 : renommer le serveur ([détails](docs/04-renommage-serveur.md))
 - [x] Étape 5 : installer le rôle AD DS ([détails](docs/05-installation-adds.md))
 - [x] Étape 6 : promouvoir le contrôleur de domaine `tssrlab.local` ([détails](docs/06-promotion-controleur-domaine.md))
-- [x] Étape 7 : créer la structure d'OU ([détails](docs/07-creation-ou.md))
+- [x] Étape 7 : créer la structure d'OU ([détails](docs/07-structure-ou.md))
 - [x] Étape 8 : créer les utilisateurs et les groupes de sécurité ([détails](docs/08-utilisateurs-groupes.md))
 - [x] Étape 9 : affecter les groupes et partager un dossier de test ([détails](docs/09-affectation-groupes.md))
 - [x] Étape 10 : créer le poste client Windows 10 Pro ([détails](docs/10-creation-client.md))
@@ -84,7 +84,7 @@ tssrlab.local
 - **Redémarrage sur l'installateur** : le client relançait l'installation de Windows 10. J'ai placé **Disque dur** en premier dans l'ordre de démarrage. ([détails](docs/10-creation-client.md))
 - **Mauvais dossier partagé** : j'ai partagé `Partages` au lieu de `Direction`. J'ai supprimé ce partage, puis créé le bon. ([détails](docs/09-affectation-groupes.md))
 - **Faute de frappe dans un identifiant** : j'ai tapé `clair.martin` au lieu de `claire.martin`. Je l'ai repéré avant de valider et corrigé aussi le champ « antérieur à Windows 2000 ». ([détails](docs/08-utilisateurs-groupes.md))
-- **Instantané oublié avant le changement de réseau** : je l'ai pris ensuite, avec un nom fidèle à l'état réel : `03-reseau-ip-fixe-ok`. ([détails](docs/03-reseau-ip.md))
+- **Instantané oublié avant le changement de réseau** : je l'ai pris ensuite, avec un nom fidèle à l'état réel : `03-reseau-ip-fixe-ok`. ([détails](docs/03-reseau-isole.md))
 - **Erreur de chemin dans PowerShell** : il manquait le `\` après `C:`. J'ai écrit le chemin complet. ([détails](docs/01-preparation.md))
 
 ## Choix techniques
